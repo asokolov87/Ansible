@@ -1,0 +1,33 @@
+---
+ - name: Getting data   
+   hosts: test
+   gather_facts: false
+
+   vars:
+     ssh_port: 22
+
+   tasks:
+
+     - name: system_command
+       routeros_command:
+         commands:
+#           - /system routerboard print
+#           - /system clock print
+#           - /snmp set enabled=yes trap-version=2
+#           - /snmp community set address= name=public numbers=0
+#
+#           - /system ntp client enable=yes primary-ntp=0.ru.pool.ntp.org secondary-ntp=1.ru.pool.ntp.org
+#
+#           - /ip service set ssh address=xx.xx.xx.xx/24 port=343
+           - /ip service set telnet disable=yes
+           - /ip service set www disable=yes
+           - /ip service set api disable=yes
+           - /ip service set api-ssl disable=yes
+
+#           - /interface ipip add remote-address=xx.xx.xx.xx 
+
+       register: system_print
+
+     - name: debug print
+       debug: var=system_print
+...
